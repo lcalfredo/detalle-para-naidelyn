@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para mi cachetoncita hermosa</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
@@ -17,7 +18,8 @@ body {
     font-family: 'Dancing Script', cursive;
     background: linear-gradient(180deg, #654b9e, #b87cce);
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     color: white;
 }
 
@@ -59,19 +61,27 @@ body {
 .container {
     text-align: center;
     padding-top: 40px;
+    padding-bottom: 140px;
 }
 
 h1 {
     font-size: 3.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 9px #fff7e6;
 }
 
-.subtitle {
-    font-size: 1.6rem;
-    opacity: 1;
-    transition: opacity 0.6s ease;
+/* TEXTO PRINCIPAL */
+#texto {
+    color: rgb(54, 0, 59);
+    font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+    font-family: "Times New Roman", Times, serif;
+    text-shadow: 0 0 6px #4e1463;
+    padding: 0 20px;
+    line-height: 1.4;
+    min-height: 120px;
 }
 
+/* IMAGEN */
 .image-box {
     margin: 35px auto 10px;
     background: #fff7e6;
@@ -86,13 +96,11 @@ h1 {
     border-radius: 15px;
 }
 
-/* TEXTO ABAJO */
+/* TEXTO FINAL */
 .love-text {
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 3rem;
     animation: glow 2.5s ease-in-out infinite;
-    position: relative;
-    top: -10px;
 }
 
 /* ANIMACIONES */
@@ -105,7 +113,7 @@ h1 {
 /* CORAZONES */
 .heart {
     position: absolute;
-    color: rgba(253, 173, 216, 0.7);
+    font-size: 1.5rem;
     animation: float 12s linear infinite;
 }
 
@@ -120,16 +128,20 @@ h1 {
     }
 }
 
-#texto {
-    color: rgb(54, 0, 59);
-    font-size: 43xp;
-    zoom: 1.9;
-    font-family: "Times New Roman", Times, serif;
-    text-shadow: 0 0 6px #4e1463;
-}
+/* RESPONSIVE CELULAR */
+@media (max-width: 768px) {
 
-h1 {
-    text-shadow: 0 0 9px #fff7e6;
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    .image-box {
+        width: 85%;
+    }
+
+    .love-text {
+        font-size: 2.2rem;
+    }
 }
 </style>
 </head>
@@ -153,13 +165,13 @@ h1 {
 <div class="container">
     <h1>Te amo Naidelyn</h1>
 
-    <div class="texto-lateral" id="texto"></div>
+    <div id="texto"></div>
 
     <div class="image-box">
         <img src="snoopy_heart.png" alt="Snoopy corazón">
     </div>
 
-    <div class="love-text">💖 Por siempre te amare  💖</div>
+    <div class="love-text">💖 Por siempre te amaré 💖</div>
 </div>
 
 <script>
@@ -177,48 +189,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const textos = [
     "Este detalle nació desde mi amor y por todo el amor que siento por ti",
     "Porque eres la personita que en realidad amo y entraste en mi corazón",
-    "Cada noche anhelo tenerte cerca de mi para sentirte, sentir tu piel y tus labios",
-    "Sin darme cuenta me enamoré de ti",
+    "Cada noche anhelo tenerte cerca de mí para sentirte, sentir tu piel y tus labios",
+    "Sin darme cuenta me enamoré de ti...",
     "Estás tan dentro de mí que invades mi mente con tantos escenarios hermosos",
     "Nunca desearía que el futuro me aleje de ti",
     "Yo quiero hacerte sentir la mujer más maravillosa de este mundo",
-    "Nunca inmagine conocer a algien tan especial como tu naidelyn",
-    "Eres tan tan gentil que aparte de que siempre me agrdas",
-    "Has sido la niña mas linda y tierna que e conocido",
-    "Espero que algun dia nuestro momento llege",
-    "Y las sircustancias que enfretaremos no nos impida dejar de amarnos",
+    "Nunca imaginé conocer a alguien tan especial como tú Naidelyn",
+    "Has sido la niña más linda y tierna que he conocido",
+    "Espero que algún día nuestro momento llegue",
     "Yo Alfredo te dedico esto y cada letra nació de mi corazón",
     "Aún sigo teniendo las esperanzas de amarte toda la vida",
-    "El universo decidió conocernos para algún día formar algo bonito", 
+    "El universo decidió conocernos para algún día formar algo bonito",
     "Te amo…"
   ];
 
   const texto = document.getElementById("texto");
   let index = 0;
-
-  const TIEMPO_LECTURA = 11000; // 9 segundos
+  const TIEMPO_LECTURA = 11000;
 
   function mostrarTexto() {
     if (index >= textos.length) return;
-
     texto.innerText = textos[index];
     index++;
-
     setTimeout(mostrarTexto, TIEMPO_LECTURA);
   }
 
   mostrarTexto();
-
 });
 
-
-    /* CORAZONES */
+/* CORAZONES + ESTRELLAS */
 for (let i = 0; i < 30; i++) {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.textContent = "✨  💞";
+    heart.textContent = Math.random() > 0.5 ? "💖" : "✨";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = 4 + Math.random() * 6 + "s";
+    heart.style.animationDuration = 6 + Math.random() * 6 + "s";
     document.body.appendChild(heart);
 }
 </script>
